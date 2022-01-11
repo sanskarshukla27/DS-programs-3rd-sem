@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+#define ESC 27
+
+typedef struct{
+    int data[10];
+    int n;
+} tlist;
+
+void menu(){
+    printf("Options:\n");
+    printf("1) Show list\n");
+    printf("ESC) Quit\n");
+}
+
+void showList(tlist *list){
+    int *p;
+    p = &list->data[0];
+    if(list->n == 0){
+        printf("Empty list!\n\n");
+    }else{
+        for(int i=0; i<list->n; i++){
+            printf("%d \n", *p);
+            p++;
+        }
+    }
+}
+
+int main(){
+    char choice;
+    tlist list;
+    list.n = 10;
+
+    list.data[0] = 16;  
+    list.data[1] = 17;
+    list.data[2] = 18;
+    list.data[3] = 19;
+    list.data[4] = 20;
+    list.data[5] = 21;
+    list.data[6] = 22;
+    list.data[7] = 23;
+    list.data[8] = 24;
+    list.data[9] = 25;
+    do{
+        menu();
+        scanf("%s",&choice);
+            switch(choice){
+                case '1': showList(&list);
+                    break;
+                case ESC:
+                    printf("quiting...\n");
+                    break;
+                default:
+                    printf("Invalid Choice!\n");
+                    break;      
+            }
+    }while(choice != ESC);
+    return 0;
+}
